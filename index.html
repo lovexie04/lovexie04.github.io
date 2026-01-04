@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>我喜欢的 CodePen 作品</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100dvh;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(157deg, #648ff6, #ffb37f, #fff890);
+	animation: hue-rotate 5s linear infinite;
+  overflow: hidden;
+}
+
+@keyframes hue-rotate {
+	to{
+		filter: hue-rotate(360deg);
+	}
+}
+
+.container {
+	color: hsl(0, 100%, 76%);
+	width: auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	padding: min(8em, 8%);
+	padding-inline: auto;
+	transform: scale(2) rotate(-50deg);
+	font-size: 100px;
+	animation: shake 0.1s infinite;
+	transition: all 0.5s ease;
+	position: relative;
+  cursor: pointer;
+}
+
+.container::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: radial-gradient(circle at center, white, transparent 40%);
+	opacity: 0.2;
+}
+
+.container-parent {
+	width: auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	animation: rotate 6s linear infinite;
+}
+
+body:has(.container-parent:active) .container {
+	font-size: 80px;
+}
+
+@keyframes rotate {
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes shake {
+	0% {
+		transform: scale(2) rotate(-30deg);
+	}
+
+	50% {
+		transform: scale(2) rotate(-30deg) translateX(-3px);
+	}
+
+	100% {
+		transform: scale(2) rotate(-30deg) translateX(0);
+	}
+}
+
+@keyframes destroy {
+	to{
+		transform: scale(2) translateY(-120dvh) translateX(-1000px) translate(-50%, -65%);
+	}
+}
+
+@keyframes destroy2 {
+	to{
+		transform: scale(2) translateX(-5px) translateY(5px) rotate(-30deg); opacity: 0;
+	}
+}
+
+h4 {
+	position: absolute;
+	top: 85%;
+	font-weight: 650;
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+	letter-spacing: 6px;
+	font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+h4::before {
+	content: "";
+	width: 130%;
+	height: 1.5px;
+	position: absolute;
+	top: 130%;
+	left: 50%;
+	transform: translateX(-50%);
+	background: black;
+}
+  </style>
+</head>
+<body>
+  <html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Heart fall.</title>
+</head>
+<body><h4>By PedroPro</h4>
+	
+	<div class="container-parent">
+		<div role="img" aria-label="Heart fall it particles and fire" tabindex="0" aria-live="polite" class="container">♥</div>
+	</div>
+</body>
+</html>
+
+  <script>
+    const container = document.querySelector(".container");
+
+function generateParticles() {
+	function newParticles() {
+    console.log("Fall particles generated.");
+
+		const FallParticles = document.createElement("div");
+		FallParticles.style.width = `${Math.random() * 5}px`;
+		FallParticles.style.height = `${Math.random() * 1000}px`;
+		FallParticles.style.pointerEvents = "none";
+		FallParticles.style.transform = "rotate(-30deg)";
+		FallParticles.style.position = "absolute";
+		FallParticles.style.left = `${Math.random() * 200 - 60}dvw`;
+		FallParticles.style.background = "white";
+		FallParticles.style.opacity = Math.random() * 1;
+		FallParticles.style.animation = "destroy2 0.2s forwards";
+
+		document.body.appendChild(FallParticles);
+
+		setTimeout(() => {
+			FallParticles.remove();
+		}, 500);
+
+		requestAnimationFrame(newParticles);
+	}
+  
+	newParticles();
+}
+
+function generateFlames() {
+	function newFlames() {
+    console.log("Flame particles generated.");
+    
+		const Flame = document.createElement("div");
+		Flame.style.position = "absolute";
+		Flame.style.left = "40%";
+		Flame.style.top = "50%";
+		Flame.style.transform = "translate(-50%, -65%)";
+		Flame.style.zIndex = "-10";
+		Flame.style.width = `${Math.random() * 40 + 100}px`;
+		Flame.style.height = `${Math.random() * 100 + 100 / 1.3}px`;
+		Flame.style.animation = "destroy 0.5s forwards";
+		Flame.style.background = `hsl(${Math.random() * 30}, 100%, 75%)`;
+		Flame.style.pointerEvents = "none";
+		Flame.style.borderRadius = "50%";
+		Flame.style.filter = "brightness(150%) opacity(0.3)";
+		Flame.style.boxShadow = `0 0 30px 10px hsl(${Math.random() * 30}, 100%, 75%)`;
+		Flame.style.transform = "scale(1.4)";
+
+		document.body.appendChild(Flame);
+
+		setTimeout(() => {
+			Flame.remove();
+		}, 500);
+
+		requestAnimationFrame(newFlames);
+	}
+
+	newFlames();
+}
+
+generateFlames();
+generateParticles();
+  </script>
+</body>
+</html>
